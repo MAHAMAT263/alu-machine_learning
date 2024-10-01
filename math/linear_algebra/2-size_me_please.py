@@ -5,7 +5,7 @@ type/shape The shape should be returned as a list of integers"""
 
 
 def matrix_shape(matrix):
-"""this is the function that calculates the shape of a matrix""" 
+    """this is the function that calculates the shape of a matrix""" 
     rows = matrix
     shape = []
     while len(rows) > 0:
