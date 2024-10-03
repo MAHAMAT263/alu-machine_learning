@@ -23,4 +23,4 @@ def np_elementwise(mat1, mat2):
     # division
     quotient_result = mat1 / mat2
     # Return a tuple containing the results of operations
-    return diff_result, sum_result, quotient_result, product_result
+    return sum_result, diff_result, product_result, quotient_result
