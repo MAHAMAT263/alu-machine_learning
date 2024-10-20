@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""Compute """
+"""Compute the posterior probability."""
+
 import numpy as np
 
 
 def posterior(x, n, P, Pr):
-    """The posterior probability of obtaining x and n."""
+    """Return the posterior probability of obtaining x and n."""
+    # Validate input
     if not isinstance(n, int) or n <= 0:
         raise ValueError('n must be a positive integer')
     if not isinstance(x, int) or x < 0:
-        text = 'x must be an integer that is greater than or equal to 0'
-        raise ValueError(text)
+        raise ValueError('x must be an integer that is greater than or equal to 0')
     if x > n:
         raise ValueError('x cannot be greater than n')
     if not isinstance(P, np.ndarray) or len(P.shape) != 1:
@@ -23,8 +24,15 @@ def posterior(x, n, P, Pr):
     if not np.isclose(np.sum(Pr), 1):
         raise ValueError('Pr must sum to 1')
 
+    # Calculate likelihood using binomial distribution
     factorial = np.math.factorial
-    likelihood = factorial(n) / (factorial(x) * factorial(n - x))
-    likelihood *= (P ** x) * ((1 - P) ** (n - x))
+    likelihood = (factorial(n) / (factorial(x) * factorial(n - x))) * (P ** x) * ((1 - P) ** (n - x))
+
+    # Calculate marginal probability
     marginal = np.sum(likelihood * Pr)
-OBOBOB    return likelihood * Pr / marginal
+
+    # Calculate posterior probability
+    posterior_prob = (likelihood * Pr) / marginal
+
+    return posterior_prob
+
