@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Compute the posterior probability."""
-
 import numpy as np
 
 
@@ -26,7 +25,8 @@ def posterior(x, n, P, Pr):
 
     # Calculate likelihood using binomial distribution
     factorial = np.math.factorial
-    likelihood = (factorial(n) / (factorial(x) * factorial(n - x))) * (P ** x) * ((1 - P) ** (n - x))
+    likelihood = (factorial(n) / (factorial(x) * factorial(n - x))) * \
+        (P ** x) * ((1 - P) ** (n - x))
 
     # Calculate marginal probability
     marginal = np.sum(likelihood * Pr)
@@ -35,4 +35,3 @@ def posterior(x, n, P, Pr):
     posterior_prob = (likelihood * Pr) / marginal
 
     return posterior_prob
-
