@@ -2,10 +2,7 @@
 '''
 Bidirectional Cell Forward
 '''
-
-
 import numpy as np
-
 
 class BidirectionalCell:
     '''
