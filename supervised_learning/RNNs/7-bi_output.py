@@ -4,6 +4,7 @@ Bidirectional Cell Forward
 '''
 import numpy as np
 
+
 class BidirectionalCell:
     '''
     Class that represents a bidirectional cell of an RNN
@@ -31,14 +32,12 @@ class BidirectionalCell:
         h_next = np.tanh(np.dot(h_x, self.Whb) + self.bhb)
         return h_next
 
-
     def output(self, H):
         ''' Method that calculates the output of the cell '''
         t, m, h = H.shape
         Y = np.zeros((t, m, self.Wy.shape[1]))
 
         for i in range(t):
-            # No need to re-stack H, use it directly
             Y[i] = np.dot(H[i], self.Wy) + self.by
             exp_Y = np.exp(Y[i])
             Y[i] = exp_Y / np.sum(exp_Y, axis=1, keepdims=True)
